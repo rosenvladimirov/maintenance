@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="account_asset_view_form">
+        <field name="name">account.asset.form</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset_management.account_asset_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="create_maintenance_equipment" string="Maintenance Equipment" type="object"
+                        class="oe_stat_button" icon="fa-cogs"
+                        confirm="are you sure to add this asset to maintenance equipment?"
+                        attrs="{'invisible': ['|', '|', ('type_assets', '!=', 'equipment'), ('type', '=', 'view'), ('maintenance_equipment_id', '!=', False)]}"/>
+            </xpath>
+            <field name="parent_id" position="after">
+                <field name="maintenance_equipment_id" attrs="{'invisible': [('type', '=', 'view')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
